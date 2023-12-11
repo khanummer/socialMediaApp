@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Index</title>
+</head>
+<body>
+    <h1>Users Index</h1>
+    <div>
+        <ul>
+
+            <% for (let i = 0; i < users.length; i++) { %>
+            <li>
+                <!-- <div> -->
+                    <%=users[i]._id %>
+                    <%=users[i].username %>
+                    <%=users[i].password %>
+                    <%=users[i].bio %>
+                <!-- </div> -->
+                <% } %>
+            </li>
+
+        </ul>
+    </div>
+</body>
+</html>

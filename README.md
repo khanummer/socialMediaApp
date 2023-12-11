@@ -14,3 +14,13 @@ npm run dev
 // stop mongodb local database
 
 brew services stop mongodb-community@7.0
+
+
+
+
+
+
+to do 
+- console.log list of users after creating a user
+- fix index listing of users (figure out how to show stuff from the database on the website)
+- download the GUI for mongoose so u can see whats going on OR learn how to use mongoshell (mongosh)

@@ -11,8 +11,9 @@ router.get('/new', (req, res) => {
 });
 
 // new post route
+// add express session. async await
 router.post('/new', (req, res) => {
-
+    
     // setting the request form info to variables
     const username = req.body.username;
     const password = req.body.password;
@@ -25,8 +26,19 @@ router.post('/new', (req, res) => {
     newUser.bio = bio;
 
     // console.log('THIS IS NEW USER ' + newUser);
-    console.log(newUser);
+    console.log(newUser)
     res.redirect('/');
+});
+
+
+router.get('/index', async (req, res) => {
+   
+   const allUsers = await User.find({})
+   
+   
+    res.render('./users/index', {
+        users: allUsers
+    });
 });
 
 
