@@ -11,8 +11,7 @@ router.get('/new', (req, res) => {
 });
 
 // new post route
-// add express session. async await
-router.post('/new', (req, res) => {
+router.post('/new', async (req, res) => {
     
     // setting the request form info to variables
     const username = req.body.username;
@@ -24,11 +23,20 @@ router.post('/new', (req, res) => {
     newUser.username = username;
     newUser.password = password;
     newUser.bio = bio;
-    User.create(newUser);
 
-    // console.log('THIS IS NEW USER ' + newUser);
-    console.log(newUser)
-    res.redirect('/');
+    try {
+        // creating user
+        const createdUser = await User.create(newUser);
+        // creating a session
+        req.session.user = createdUser;
+        req.session.logged = true;
+
+        res.redirect('/');
+
+    } catch (err) {
+        res.send(err);
+        console.log(err);
+    }
 });
 
 

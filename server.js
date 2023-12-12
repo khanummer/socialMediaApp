@@ -14,6 +14,13 @@ app.use(express.static(__dirname + "/public"));
 // using bodyParser to parse the body and get access to req.body
 app.use(bodyParser.urlencoded({extended: false}));
 
+// using express session
+app.use(session({
+    secret: 'THIS IS A RANDOM SECRET STRING',
+    resave: false,
+    saveUninitialized: false
+}))
+
 
 // setting default view engine and extension 
 app.set('views', './views');
