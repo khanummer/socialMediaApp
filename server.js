@@ -31,9 +31,25 @@ app.use('/users', userController);
 
 
 // Get Home Page
-app.get('/', (req, res) => {
-    res.render('index');
+app.get('/', async (req, res) => {
+    if (req.session.logged == true) {
+
+        try {
+            const loggedUser = await req.session.user.username
+            res.render('index',{
+                loggedUser: loggedUser
+            });
+        } catch (err) {
+            res.send(err);
+            console.log(err);
+        }
+    } else {
+        res.render('index', {
+            loggedUser: ''
+        });
+    }
 });
+
 
 
 
