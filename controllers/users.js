@@ -24,6 +24,7 @@ router.post('/new', (req, res) => {
     newUser.username = username;
     newUser.password = password;
     newUser.bio = bio;
+    User.create(newUser);
 
     // console.log('THIS IS NEW USER ' + newUser);
     console.log(newUser)
