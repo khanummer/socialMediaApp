@@ -6,13 +6,27 @@
     <title>Sign Up for Nothing Social!</title>
 </head>
 <body>
-    <div>Sign Up for Nothing Social</div>
+
+    <div>Nothing Social</div>
     <div><a href="/">Home</a></div>
-    <form action="/users/new" method="POST">
+
+    
+    <div>Log In</div>
+    <form action="/users/login" method="POST">
+        <div>Username</div><input type="text" name="username">
+        <div>Password</div><input type="password" name="password">
+        <button type="submit">Log In</button>
+    </form>
+    
+
+    <div>Don't Have and account? Register</div>
+    <form action="/users/register" method="POST">
         <div>Username</div><input type="text" name="username">
         <div>Password</div><input type="text" name="password">
         <div>Bio</div><input type ="text" name="bio">
-        <button type="submit"> Sign Up
+        <button type="submit"> Sign Up</button>
     </form>
+
+
 </body>
 </html>

@@ -10,8 +10,8 @@ router.get('/new', (req, res) => {
     res.render('./users/new')
 });
 
-// new post route
-router.post('/new', async (req, res) => {
+// user register account route
+router.post('/register', async (req, res) => {
     
     // setting the request form info to variables
     const username = req.body.username;
@@ -39,7 +39,30 @@ router.post('/new', async (req, res) => {
     }
 });
 
+// user log in route
+router.post('/login', async (req, res) => {
+    try {
+        const loggedUser = await User.findOne({username: req.body.username});
 
+        if(loggedUser.password === req.body.password){
+            req.session.message = '';
+            req.session.currentUser = loggedUser._id;
+            req.session.logged = true;
+            req.session.user = loggedUser;
+            res.redirect('/');
+        } else {
+            req.session.message ='your username or pasword are incorrect'
+            alert('your username or password are incorrect');
+        }
+    } catch(err) {
+        res.send(err);
+        console.log(err);
+    }
+});
+
+
+
+// users index route
 router.get('/index', async (req, res) => {
    
    const allUsers = await User.find({})
@@ -49,6 +72,9 @@ router.get('/index', async (req, res) => {
         users: allUsers
     });
 });
+
+
+
 
 
 module.exports = router;
