@@ -39,6 +39,7 @@ app.get('/', async (req, res) => {
             res.render('index',{
                 loggedUser: loggedUser
             });
+            console.log(req.session);
         } catch (err) {
             res.send(err);
             console.log(err);

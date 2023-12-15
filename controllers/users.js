@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
     try {
         const loggedUser = await User.findOne({username: req.body.username});
 
-        if(loggedUser.password === req.body.password){
+        if(loggedUser.password == req.body.password){
             req.session.message = '';
             req.session.currentUser = loggedUser._id;
             req.session.logged = true;
@@ -52,7 +52,8 @@ router.post('/login', async (req, res) => {
             res.redirect('/');
         } else {
             req.session.message ='your username or pasword are incorrect'
-            alert('your username or password are incorrect');
+            console.log('your username or password are incorrect');
+            res.redirect('/');
         }
     } catch(err) {
         res.send(err);
@@ -60,6 +61,16 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// user log out route
+router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if(err) {
+            res.send(err);
+        } else {
+            res.redirect('/');
+        }
+    })
+})
 
 
 // users index route
@@ -72,6 +83,8 @@ router.get('/index', async (req, res) => {
         users: allUsers
     });
 });
+
+
 
 
 

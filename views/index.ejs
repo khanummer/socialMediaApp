@@ -22,7 +22,13 @@
 
     <div>Current signed in user : <%=loggedUser%></div>
 
-    <div><button href="/users/signout">Sign Out</button></div>
+
+
+    <div>
+        <form action="/users/logout" method="POST">
+            <button type="submit">Log Out</button>
+        </form>
+    </div>
 
 </body>
 </html>

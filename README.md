@@ -22,7 +22,7 @@ brew services stop mongodb-community@7.0
 
 to do 
 
-- find req.body / req.session in the browser console. 
 - bcrypt passwords
-- then login and register should work
-- after that, making posts and everything else should be easy
+- fix req.session.message 
+<!-- Session Message -->
+<!-- <div><%=message %></div> -->
