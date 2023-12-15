@@ -6,12 +6,12 @@ const bcrypt = require('bcryptjs');
 
 
 
-// new get route
+// register & login get route
 router.get('/new', (req, res) => {
     res.render('./users/new')
 });
 
-// user register account route
+// register account route
 router.post('/register', async (req, res) => {
     
     // setting the request form info to variables
@@ -75,14 +75,49 @@ router.post('/logout', (req, res) => {
 })
 
 
+router.get('/delete', async (req, res) => {
+    try {
+        const foundUser = await User.findOne({username: req.session.username})
+        res.send('./users/delete', {
+            user: foundUser
+        })
+    } catch(err) {
+        res.send(err);
+        console.log(err);
+    }
+});
+
+
+
+// 
+router.get('/delete' ,(req, res) => {
+    res.send('index');
+})
+
+
+
+// user delete account route
+router.delete('/delete', (req, res) => {
+    User.findByIdAndRemove({username: req.session.user.username}, (err) => {
+        if(err) {
+            res.send(err);
+        } else {
+            req.session.destroy();
+            res.redirect('/');
+        }
+    })
+})
+
+
 // users index route
 router.get('/index', async (req, res) => {
    
-   const allUsers = await User.find({})
-   
+    const allUsers = await User.find({})
+    const foundUser = await User.findOne({username: req.session.user.username})
    
     res.render('./users/index', {
-        users: allUsers
+        users: allUsers,
+        user: foundUser
     });
 });
 
