@@ -22,7 +22,6 @@ brew services stop mongodb-community@7.0
 
 to do 
 
-- bcrypt passwords
 - fix req.session.message 
 <!-- Session Message -->
 <!-- <div><%=message %></div> -->

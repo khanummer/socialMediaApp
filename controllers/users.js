@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const User = require('../models/users');
+const bcrypt = require('bcryptjs');
 
 
 
@@ -16,12 +17,13 @@ router.post('/register', async (req, res) => {
     // setting the request form info to variables
     const username = req.body.username;
     const password = req.body.password;
+    const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     const bio = req.body.bio;
 
     // entering into the database
     const newUser = {};
     newUser.username = username;
-    newUser.password = password;
+    newUser.password = hashedPassword;
     newUser.bio = bio;
 
     try {
@@ -44,14 +46,14 @@ router.post('/login', async (req, res) => {
     try {
         const loggedUser = await User.findOne({username: req.body.username});
 
-        if(loggedUser.password == req.body.password){
+        if(bcrypt.compareSync(req.body.password, loggedUser.password)) {
             req.session.message = '';
             req.session.currentUser = loggedUser._id;
             req.session.logged = true;
             req.session.user = loggedUser;
             res.redirect('/');
         } else {
-            req.session.message ='your username or pasword are incorrect'
+            req.session.message ='your username or password are incorrect'
             console.log('your username or password are incorrect');
             res.redirect('/');
         }
