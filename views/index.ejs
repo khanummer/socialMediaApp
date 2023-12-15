@@ -10,19 +10,21 @@
 <body>
     <!-- Header -->
     <h1>"Nothing Social"</h1>
+    
+    <!-- NavBar -->
+    <div>
+        <div><a href="/">Home</a></div>
+        <div><a href="/users/new">Log in / Register</a></div>
+        <div><a href="/users/index">Users Index</a></div>
+        <div><a href="/users/settings">Settings</a></div>
+    </div>
+    
     <!-- Sub-Header -->
     <div>A fully functioning, social media app concept designed around the 'Nothing' Tech ecosystem.</div>
     <div>by Ummer Khan</div>
 
-    <!-- NavBar -->
-    <div>
-        <div><a href="/users/new">Log in / Register</a></div>
-        <div><a href="/users/index">View All Users</a></div>
-    </div>
 
-    <div>Current signed in user : <%=loggedUser%></div>
-
-
+    <h2>Current signed in user : <%=loggedUser%></h2>
 
     <div>
         <form action="/users/logout" method="POST">

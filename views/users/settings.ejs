@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Account</title>
+    <title>Settings</title>
 </head>
 <body>
-    <h1>Are you sure you want to delete your account?</h1>
+    <h1>User Settings</h1>
     <!-- NavBar -->
     <div>
         <div><a href="/">Home</a></div>
@@ -15,9 +15,9 @@
         <div><a href="/users/settings">Settings</a></div>
     </div>
 
-    <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-        <button type="submit">Yes, delete my account.</button>
-    </form>
-    
+
+    <div>Edit Profile</div>
+    <div>Delete Account</div>
+
 </body>
 </html>

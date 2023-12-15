@@ -75,6 +75,10 @@ router.post('/logout', (req, res) => {
 })
 
 
+
+
+
+// router get delete
 router.get('/delete', async (req, res) => {
     try {
         const foundUser = await User.findOne({username: req.session.username})
@@ -88,11 +92,6 @@ router.get('/delete', async (req, res) => {
 });
 
 
-
-// 
-router.get('/delete' ,(req, res) => {
-    res.send('index');
-})
 
 
 
@@ -122,7 +121,9 @@ router.get('/index', async (req, res) => {
 });
 
 
-
+router.get('/settings', () => {
+    res.send('settings');
+})
 
 
 
