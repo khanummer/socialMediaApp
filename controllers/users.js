@@ -110,19 +110,31 @@ router.delete('/delete', (req, res) => {
 
 // users index route
 router.get('/index', async (req, res) => {
-   
-    const allUsers = await User.find({})
-    const foundUser = await User.findOne({username: req.session.user.username})
-   
-    res.render('./users/index', {
-        users: allUsers,
-        user: foundUser
+    if (req.session.logged == 'true') {
+
+        try {
+            const allUsers = await User.find({})
+            const foundUser = await User.findOne({username: req.session.user.username})
+            
+            res.render('./users/index', {
+                users: allUsers,
+                user: foundUser
+            });
+        } catch(err) {
+            res.send(err);
+            console.log(err);
+        }
+    } else {
+        const allUsers = await User.find({})
+        res.render('./users/index', {
+            users: allUsers
+        });
+    }
     });
-});
 
 
-router.get('/settings', () => {
-    res.send('settings');
+router.get('/settings', (req, res) => {
+    res.render('./users/settings');
 })
 
 

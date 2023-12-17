@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users Index</title>
+    <!-- Importing Css -->
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css">
 </head>
 <body>
     <h1>Users Index</h1>
@@ -20,10 +22,9 @@
             <% for (let i = 0; i < users.length; i++) { %>
             <li>
                 <!-- <div> -->
-                    <%=users[i]._id %>
-                    <%=users[i].username %>
-                    <%=users[i].password %>
-                    <%=users[i].bio %>
+                    ID <%=users[i]._id %>
+                    Username <%=users[i].username %>
+                    Bio <%=users[i].bio %>
                 <!-- </div> -->
                 <% } %>
             </li>
