@@ -1,4 +1,4 @@
-# socialMediaApp
+# Nothing Social
 Meet 'Nothing Social' The Social Media App styled around the 'Nothing' Tech Company ran by Carl Pei
 
 
@@ -20,9 +20,9 @@ brew services stop mongodb-community@7.0
 
 
 
-to do 
+to do
 
-- fix req.session.message 
-- fix delete ._id & router.--('/:id') controllers
-<!-- Session Message -->
-<!-- <div><%=message %></div> -->
+- 
+- get single user profile route
+- user edit & delete routes
+- posts

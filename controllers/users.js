@@ -7,8 +7,24 @@ const bcrypt = require('bcryptjs');
 
 
 // register & login get route
-router.get('/new', (req, res) => {
-    res.render('./users/new')
+router.get('/new', async (req, res) => {
+    if (req.session.logged == true) {
+        try {
+            const foundUser = await User.findOne({username: req.session.user.username});
+            const loggedUser = await req.session.user.username
+
+            res.render('./users/new', {
+                loggedUser: loggedUser
+            }) 
+        } catch(err) {
+            res.send(err);
+            console.log(err);
+        }
+    } else {
+            res.render('./users/new', {
+                loggedUser: ''
+            })
+        } 
 });
 
 // register account route
@@ -110,15 +126,15 @@ router.delete('/delete', (req, res) => {
 
 // users index route
 router.get('/index', async (req, res) => {
-    if (req.session.logged == 'true') {
+    if (req.session.logged == true) {
 
         try {
             const allUsers = await User.find({})
-            const foundUser = await User.findOne({username: req.session.user.username})
-            
+            const foundUser = await User.findOne({username: req.session.user})
+            const loggedUser = await req.session.user.username
             res.render('./users/index', {
                 users: allUsers,
-                user: foundUser
+                loggedUser: loggedUser
             });
         } catch(err) {
             res.send(err);
@@ -127,15 +143,43 @@ router.get('/index', async (req, res) => {
     } else {
         const allUsers = await User.find({})
         res.render('./users/index', {
-            users: allUsers
+            users: allUsers,
+            loggedUser: ''
+
         });
     }
     });
 
 
-router.get('/settings', (req, res) => {
-    res.render('./users/settings');
+// get users settings route
+router.get('/settings', async (req, res) => {
+    if (req.session.logged == true) {
+        try {
+            const foundUser = await User.findOne({username: req.session.user.username})
+            const loggedUser = await req.session.user.username
+            res.render('./users/settings', {
+                loggedUser: loggedUser
+            });
+        } catch(err) {
+            res.send(err);
+            console.log(err);
+        }
+    } else {
+        res.render('./users/settings', {
+            loggedUser: ''
+        })
+    }
 })
+
+// // get single user route
+// router.get('/:id', async (req, res) => {
+//     try {
+
+//     } catch(err) {
+//         console.log(err);
+//         res.send(err);
+//     }
+// })
 
 
 

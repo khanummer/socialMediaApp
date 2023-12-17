@@ -12,14 +12,21 @@
     <!-- NavBar -->
     <div>
         <div><a href="/">Home</a></div>
-        <div><a href="/users/new">Log in / Register</a></div>
+        <div><a href="/users/new">Log In / Register</a></div>
         <div><a href="/users/index">Users Index</a></div>
         <div><a href="/users/settings">Settings</a></div>
-    </div>
+        <h2><%=loggedUser%></h2>
+        <div>
+            <form action="/users/logout" method="POST">
+                <button type="submit">Log Out</button>
+            </form>
+        </div>
 
 
     <div>Edit Profile</div>
     <div>Delete Account</div>
+
+
 
 </body>
 </html>

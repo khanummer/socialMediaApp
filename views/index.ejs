@@ -14,26 +14,21 @@
     <!-- NavBar -->
     <div>
         <div><a href="/">Home</a></div>
-        <div><a href="/users/new">Log in / Register</a></div>
+        <div><a href="/users/new">Log In / Register</a></div>
         <div><a href="/users/index">Users Index</a></div>
         <div><a href="/users/settings">Settings</a></div>
+        <h2><%=loggedUser%></h2>
+        <div>
+            <form action="/users/logout" method="POST">
+                <button type="submit">Log Out</button>
+            </form>
+        </div>
+    </div>
     </div>
     
     <!-- Sub-Header -->
     <div>A fully functioning, social media app concept designed around the 'Nothing' Tech ecosystem.</div>
     <div>by Ummer Khan</div>
-
-
-    <h2>Current signed in user : <%=loggedUser%></h2>
-
-    <div>
-        <form action="/users/logout" method="POST">
-            <button type="submit">Log Out</button>
-        </form>
-    </div>
-
-
-    
 
 </body>
 </html>
