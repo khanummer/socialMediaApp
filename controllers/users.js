@@ -171,15 +171,29 @@ router.get('/settings', async (req, res) => {
     }
 })
 
-// // get single user route
-// router.get('/:id', async (req, res) => {
-//     try {
+// get single user route
+router.get('/:id', async (req, res) => {
+    if (req.session.logged == true) {
 
-//     } catch(err) {
-//         console.log(err);
-//         res.send(err);
-//     }
-// })
+        try {
+            const foundUser = await User.findById(req.params.id);
+            const loggedUser = await req.session.user.username;
+            res.render('./users/show', {
+                user: foundUser,
+                loggedUser: loggedUser
+            })
+        } catch(err) {
+            console.log(err);
+            res.send(err);
+        }
+    } else {
+        const foundUser = await User.findById(req.params.id);
+        res.render('./users/show', {
+            user: foundUser,
+            loggedUser: ''
+        })
+    }
+})
 
 
 

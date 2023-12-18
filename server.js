@@ -44,6 +44,7 @@ app.get('/', async (req, res) => {
                 loggedUser: loggedUser
             });
             console.log(req.session);
+            console.log(req.params)
         } catch (err) {
             res.send(err);
             console.log(err);
