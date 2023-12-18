@@ -22,7 +22,6 @@ brew services stop mongodb-community@7.0
 
 to do
 
-- 
-- get single user profile route
+- landing page with sign in / register. and or different navbar if you are signed in 
 - user edit & delete routes
 - posts

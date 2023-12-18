@@ -158,20 +158,25 @@ router.get('/settings', async (req, res) => {
             const foundUser = await User.findOne({username: req.session.user.username})
             const loggedUser = await req.session.user.username
             res.render('./users/settings', {
-                loggedUser: loggedUser
+                loggedUser: loggedUser,
+                user: foundUser
             });
         } catch(err) {
             res.send(err);
             console.log(err);
         }
     } else {
+        const foundUser = await User.findOne({username: req.session.user.username})
         res.render('./users/settings', {
-            loggedUser: ''
+            loggedUser: '',
+            user: foundUser
         })
     }
 })
 
 // get single user route
+// add if user is logged in they have an edit button and can edit
+// if (req.session.user._id == req.params.id) res.render showwithEditbutton.ejs
 router.get('/:id', async (req, res) => {
     if (req.session.logged == true) {
 
@@ -194,6 +199,17 @@ router.get('/:id', async (req, res) => {
         })
     }
 })
+
+// user edit route
+router.get('/:id/edit', async (req, res) => {
+    const foundUser = await User.findById(req.params.id);
+    const loggedUser = await req.session.user.username;
+    res.render('./users/edit', {
+        user: foundUser,
+        loggedUser: loggedUser
+    })
+
+});
 
 
 
