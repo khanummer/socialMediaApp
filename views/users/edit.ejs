@@ -23,8 +23,13 @@
         </div>
     </div>
 
-    <div>Edit Username</div>
-    <div>Edit Bio</div>
+    <form action="/users/<%=user._id%>?_method=PUT" method="POST">
+        <div>Username</div>
+        <input type="text" name="username" value="<%=user.username%>"><br>
+        <div>Bio</div>
+        <textarea name="bio" value="<%=user.bio%>"></textarea><br>
+        <button type="submit"></button>
+    </form>
 
 
 

@@ -25,3 +25,9 @@ to do
 - landing page with sign in / register. and or different navbar if you are signed in 
 - user edit & delete routes
 - posts
+
+
+bugs 
+- If username is edited to a username that is already taken, app crashes
+- after editing a user, the settings button breaks.
+- edit bio value placeholder is bugged

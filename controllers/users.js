@@ -166,11 +166,11 @@ router.get('/settings', async (req, res) => {
             console.log(err);
         }
     } else {
-        const foundUser = await User.findOne({username: req.session.user.username})
-        res.render('./users/settings', {
+        // const foundUser = await User.findOne({username: req.session.user.username});
+        res.render('index', {
             loggedUser: '',
-            user: foundUser
-        })
+            user: ''
+        });
     }
 })
 
@@ -210,6 +210,31 @@ router.get('/:id/edit', async (req, res) => {
     })
 
 });
+
+// user edit update route
+router.put('/:id', async (req, res) =>{
+    try {
+        updatedUser = await User.findByIdAndUpdate(req.session.currentUser, req.body, {new: true});
+        updatedUser.save();
+        // if (req.session.logged == true) {
+            const foundUser = await User.findById(req.params.id);
+            const loggedUser = await req.session.user.username;
+            res.render('./users/settings', {
+                user: foundUser,
+                loggedUser: loggedUser
+            });
+        // } else {
+        //     const foundUser = await User.findById(req.params.id);
+        //     res.redirect('/users/settings', {
+        //         user: foundUser,
+        //         loggedUser: ''
+        //     })
+        // }
+    } catch(err) {
+        res.send(err);
+        console.log(err);
+    }
+})
 
 
 
