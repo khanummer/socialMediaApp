@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post's Index</title>
+    <title>Show Post</title>
     <!-- Importing Css -->
     <link rel="stylesheet" type="text/css" href="/../css/styles.css">
 </head>
@@ -13,15 +13,10 @@
     <div><a href="/users/new">Log In / Register</a></div>
     <div><a href="/users/index">Users Index</a></div>
     <div><a href="/users/settings">Settings</a></div>
-    <h2>Post's Index</h2>
+    <h2>Show Post</h2>
 
-    <% for (let i = 0; i < posts.length; i++) { %>
-    <div>
-                <div>--------</div>
-                    <a href="/posts/<%=posts[i]._id%>"><div><%=posts[i]%></div></a>
-                <div>--------</div>
-        </div>
-    <% } %>
+    <div><%=post%></div>
+
 
 </body>
 </html>
