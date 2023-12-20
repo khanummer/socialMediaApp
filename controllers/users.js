@@ -48,6 +48,7 @@ router.post('/register', async (req, res) => {
         // creating a session
         req.session.user = createdUser;
         req.session.logged = true;
+        req.session.currentUser = createdUser._id;
 
         res.redirect('/');
 
@@ -95,11 +96,13 @@ router.post('/logout', (req, res) => {
 
 
 // router get delete
-router.get('/delete', async (req, res) => {
+router.get('/:id/delete', async (req, res) => {
     try {
-        const foundUser = await User.findOne({username: req.session.username})
-        res.send('./users/delete', {
-            user: foundUser
+        const loggedUser = await req.session.user.username;
+        const foundUser = await User.findOne({_id: req.session.user._id})
+        res.render('./users/delete', {
+            user: foundUser,
+            loggedUser: loggedUser
         })
     } catch(err) {
         res.send(err);
@@ -110,18 +113,27 @@ router.get('/delete', async (req, res) => {
 
 
 
-
 // user delete account route
-router.delete('/delete', (req, res) => {
-    User.findByIdAndRemove({username: req.session.user.username}, (err) => {
-        if(err) {
-            res.send(err);
-        } else {
-            req.session.destroy();
-            res.redirect('/');
-        }
-    })
-})
+// router.delete('/:id/delete', (req, res) => {
+//         User.findByIdAndDelete({_id: req.session.user._id}, (err) => {
+//         if(err) {
+//             res.send(err);
+//         } else {
+//             req.session.destroy();
+//             res.redirect('/');
+//         }
+//     })
+// })
+
+router.delete('/:id/delete',  (req, res) => {
+    const loggedUser = req.session.user._id
+    // User.findOneAndDelete({username: req.session.user.username}),
+    User.findOneAndDelete({_id: loggedUser}),
+    req.session.destroy();
+    res.redirect('/');
+   
+});
+
 
 
 // users index route
