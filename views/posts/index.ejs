@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post's Index</title>
+    <!-- Importing Css -->
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css">
+</head>
+<body>
+    <h1>Nothing Social</h1>
+    <div><a href="/">Home</a></div>
+    <div><a href="/users/new">Log In / Register</a></div>
+    <div><a href="/users/index">Users Index</a></div>
+    <div><a href="/users/settings">Settings</a></div>
+    <h2>Post's Index</h2>
+
+    <% for (let i = 0; i < posts.length; i++) { %>
+        <div>
+                <div>--------</div>
+                    <div><%=posts%></div>
+                <div>--------</div>
+        </div>
+    <% } %>
+
+</body>
+</html>

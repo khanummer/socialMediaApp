@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const PORT = 3000;
 const userController = require('./controllers/users');
+const postController = require('./controllers/posts')
+
 
 // require mongoose database
 require('./db/db');
@@ -30,8 +32,9 @@ app.use(session({
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-// Using user router 
+// Using routers
 app.use('/users', userController);
+app.use('/posts', postController);
 
 
 // Get Home Page
