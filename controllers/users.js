@@ -194,7 +194,8 @@ router.get('/:id', async (req, res) => {
     if (req.session.logged == true) {
 
         try {
-            const foundUser = await User.findById(req.params.id);
+            // const foundUser = await User.findById(req.params.id)
+            const foundUser = await User.findById(req.params.id).populate("posts");
             const loggedUser = await req.session.user.username;
             res.render('./users/show', {
                 user: foundUser,
@@ -205,7 +206,8 @@ router.get('/:id', async (req, res) => {
             res.send(err);
         }
     } else {
-        const foundUser = await User.findById(req.params.id);
+        // const foundUser = await User.findById(req.params.id)
+        const foundUser = await User.findById(req.params.id).populate("posts");
         res.render('./users/show', {
             user: foundUser,
             loggedUser: ''

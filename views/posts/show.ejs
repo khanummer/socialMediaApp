@@ -15,8 +15,19 @@
     <div><a href="/users/settings">Settings</a></div>
     <h2>Show Post</h2>
 
-    <div><%=post%></div>
-
+    <!-- <div><%=post%></div> -->
+    <div>
+        <div>--------</div>
+        <!-- <a href="/posts/<%=post._id%>"><div><%=post%></div></a> -->
+        <a href="/posts/<%=post._id%>">
+            <div><%=post.image%></div>
+            <div><%=post.description%></div>
+        </a>
+        <a href="/users/<%=post.user._id%>">
+            <div><%=post.user.username%></div>
+        </a>
+        <div>--------</div>
+    </div>
 
 </body>
 </html>

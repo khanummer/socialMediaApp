@@ -16,10 +16,16 @@
     <h2>Post's Index</h2>
 
     <% for (let i = 0; i < posts.length; i++) { %>
-    <div>
-                <div>--------</div>
-                    <a href="/posts/<%=posts[i]._id%>"><div><%=posts[i]%></div></a>
-                <div>--------</div>
+        <div>
+            <div>--------</div>
+            <a href="/posts/<%=posts[i]._id%>">
+                <div><%=posts[i].image%></div>
+                <div><%=posts[i].description%></div>
+            </a>
+            <a href="/users/<%=posts[i].user._id%>">
+                <div><%=posts[i].user.username%></div>
+            </a>
+            <div>--------</div>
         </div>
     <% } %>
 

@@ -9,7 +9,7 @@ router.post('/new', async (req, res) => {
     try {
         const foundUser = await User.findById(req.session.user._id);
         const createPost = await Post.create(req.body);
-        createPost.userId = foundUser._id;
+        createPost.user = foundUser;
         createPost.save();
         foundUser.posts.push(createPost._id);
         foundUser.save();
@@ -31,7 +31,7 @@ router.get('/new', async (req, res) => {
 // get posts index
 router.get('/index', async (req, res) => {
     try {
-        const allPosts = await Post.find({});
+        const allPosts = await Post.find({}).populate("user");
         res.render('posts/index', {
             posts: allPosts,
         })
@@ -46,7 +46,7 @@ router.get('/index', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
 
-        const foundPost = await Post.findById(req.params.id).populate("userId")
+        const foundPost = await Post.findById(req.params.id).populate("user")
         res.render('posts/show', {
             post: foundPost
         })
