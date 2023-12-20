@@ -23,8 +23,12 @@ brew services stop mongodb-community@7.0
 to do
 
 - landing page with sign in / register. and or different navbar if you are signed in 
-- user edit & delete routes
-- posts
+- better navbar
+- user delete route
+- add posts to user profile 
+- single post show route
+- post edit route
+- post delete route
 
 
 bugs 
