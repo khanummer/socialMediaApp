@@ -45,15 +45,40 @@ router.get('/index', async (req, res) => {
 // add if logged user = post userID show settings show page 
 router.get('/:id', async (req, res) => {
     try {
+        const loggedUser = await User.findById(req.session.user._id);
+        const foundPost = await Post.findById(req.params.id).populate("user");
+        if (loggedUser._id.toString() == foundPost.user._id.toString()) {
 
-        const foundPost = await Post.findById(req.params.id).populate("user")
-        res.render('posts/show', {
-            post: foundPost
-        })
+            res.render('posts/settings', {
+                post: foundPost
+            })
+        } else {
+            res.render('posts/show', {
+                post: foundPost
+            });
+        }
     } catch(err) {
         res.send(err);
         console.log(err);
     }
 });
+
+// get edit route
+router.get('/:id/edit', async (req, res) => {
+    try {
+
+        const foundPost = await Post.findById(req.params.id).populate("user");
+        res.render('posts/edit', {
+            post: foundPost
+        });
+    } catch(err) {
+        res.send(err);
+        console.log(err);
+    }
+});
+
+// put edit route (update)
+
+
 
 module.exports = router;

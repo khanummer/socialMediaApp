@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nothing Social | <%=post.user.username%></title>
+    <!-- Importing Css -->
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css">
+</head>
+<body>
+    <h1>Nothing Social</h1>
+    <div><a href="/">Home</a></div>
+    <div><a href="/users/new">Log In / Register</a></div>
+    <div><a href="/users/index">Users Index</a></div>
+    <div><a href="/users/settings">Settings</a></div>
+    <h2>View Post</h2>
+
+
+    <div>--------</div>
+    <!-- <a href="/posts/<%=post._id%>"><div><%=post%></div></a> -->
+    <a href="/posts/<%=post._id%>">
+        <div><%=post.image%></div>
+        <div><%=post.description%></div>
+    </a>
+    <a href="/users/<%=post.user._id%>">
+        <div><%=post.user.username%></div>
+    </a>
+    <div>--------</div>
+
+    <div><a href="/posts/<%=post._id%>/edit">Edit Description</a></div>
+    <div><a>Delete Post</a></div>
+
+
+
+</body>
+</html>
