@@ -9,11 +9,8 @@
 </head>
 <body>
     <h1>Nothing Social</h1>
-    <div><a href="/">Home</a></div>
-    <div><a href="/users/new">Log In / Register</a></div>
-    <div><a href="/users/index">Users Index</a></div>
-    <div><a href="/users/settings">Settings</a></div>
-    <h2>Post's Index</h2>
+    <!-- NavBar -->
+    <%- include('../partials/navbar.ejs') %>
 
     <% for (let i = 0; i < posts.length; i++) { %>
         <div>

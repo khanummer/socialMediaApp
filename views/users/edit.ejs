@@ -10,18 +10,7 @@
 <body>
     <h1>Edit <%=user.username%>'s Profile</h1>
     <!-- NavBar -->
-    <div>
-        <div><a href="/">Home</a></div>
-        <div><a href="/users/new">Log In / Register</a></div>
-        <div><a href="/users/index">Users Index</a></div>
-        <div><a href="/users/settings">Settings</a></div>
-        <h2><%=loggedUser%></h2>
-        <div>
-            <form action="/users/logout" method="POST">
-                <button type="submit">Log Out</button>
-            </form>
-        </div>
-    </div>
+    <%- include('../partials/navbar.ejs') %>
 
     <form action="/users/<%=user._id%>?_method=PUT" method="POST">
         <div>Username</div>

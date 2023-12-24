@@ -10,18 +10,8 @@
 <body>
     <h1>Are you sure you want to delete your account?</h1>
     <!-- NavBar -->
-    <div>
-        <div><a href="/">Home</a></div>
-        <div><a href="/users/new">Log In / Register</a></div>
-        <div><a href="/users/index">Users Index</a></div>
-        <div><a href="/users/settings">Settings</a></div>
-        <h2><%=loggedUser%></h2>
-        <div>
-            <form action="/users/logout" method="POST">
-                <button type="submit">Log Out</button>
-            </form>
-        </div>
-    </div>
+    <!-- NavBar -->
+    <%- include('../partials/navbar.ejs') %>
 
     <!-- <form action="/users/<%=user._id%>?_method=DELETE" method="POST"> -->
     <form action="/users/<%=user._id%>/delete?_method=DELETE" method="POST">

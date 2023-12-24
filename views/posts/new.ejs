@@ -9,11 +9,8 @@
 </head>
 <body>
     <h1>Nothing Social</h1>
-    <div><a href="/">Home</a></div>
-    <div><a href="/users/new">Log In / Register</a></div>
-    <div><a href="/users/index">Users Index</a></div>
-    <div><a href="/users/settings">Settings</a></div>
-    <h2>Create a New Post</h2>
+    <!-- NavBar -->
+    <%- include('../partials/navbar.ejs') %>
 
     <form action="/posts/new" method="POST">
         <div>Image</div><input type="text" name="image"><br>

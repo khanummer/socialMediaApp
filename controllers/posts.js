@@ -22,18 +22,22 @@ router.post('/new', async (req, res) => {
 
 // get new post route
 router.get('/new', async (req, res) => {
+    const loggedUser = await req.session.user.username
     const foundUser = await User.findById(req.session.user._id);
     res.render('posts/new', {
-        user: foundUser
+        user: foundUser,
+        loggedUser: loggedUser
     })
 });
 
 // get posts index
 router.get('/index', async (req, res) => {
     try {
+        const loggedUser = await req.session.user.username
         const allPosts = await Post.find({}).populate("user");
         res.render('posts/index', {
             posts: allPosts,
+            loggedUser: loggedUser
         })
     } catch (err) {
         res.send(err);
@@ -45,17 +49,19 @@ router.get('/index', async (req, res) => {
 // add if logged user = post userID show settings show page 
 router.get('/:id', async (req, res) => {
     try {
-        const loggedUser = await User.findById(req.session.user._id);
+        const loggedUser = await req.session.user.username
         const foundPost = await Post.findById(req.params.id).populate("user");
         if (loggedUser._id.toString() == foundPost.user._id.toString()) {
             const foundPost = await Post.findById(req.params.id).populate("user");
             res.render('posts/settings', {
-                post: foundPost
+                post: foundPost,
+                loggedUser: loggedUser
             })
         } else {
             const foundPost = await Post.findById(req.params.id).populate("user");
             res.render('posts/show', {
-                post: foundPost
+                post: foundPost,
+                loggedUser: loggedUser
             });
         }
     } catch(err) {
@@ -67,10 +73,11 @@ router.get('/:id', async (req, res) => {
 // get edit route
 router.get('/:id/edit', async (req, res) => {
     try {
-
+        const loggedUser = await req.session.user.username
         const foundPost = await Post.findById(req.params.id).populate("user");
         res.render('posts/edit', {
-            post: foundPost
+            post: foundPost,
+            loggedUser: loggedUser
         });
     } catch(err) {
         res.send(err);
@@ -81,8 +88,8 @@ router.get('/:id/edit', async (req, res) => {
 // put edit route (update)
 router.put('/:id/edit', async (req, res) => {
     try {
-        const loggedUser = await User.findById(req.session.user._id);
-        if (loggedUser._id.toString() == foundPost.user._id.toString()) {
+        const foundUser = await User.findById(req.session.user._id);
+        if (foundUser._id.toString() == foundPost.user._id.toString()) {
             const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true});
             updatedPost.save();
             res.render('posts/:id');

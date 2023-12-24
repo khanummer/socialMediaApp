@@ -6,27 +6,27 @@ const Post = require('../models/posts');
 const bcrypt = require('bcryptjs');
 
 
-
+// NO LONGER NEEDED BECAUSE OF CONTROLLER IN SERVER.JS 
 // register & login get route
-router.get('/new', async (req, res) => {
-    if (req.session.logged == true) {
-        try {
-            const foundUser = await User.findOne({username: req.session.user.username});
-            const loggedUser = await req.session.user.username
+// router.get('/new', async (req, res) => {
+//     if (req.session.logged == true) {
+//         try {
+//             const foundUser = await User.findOne({username: req.session.user.username});
+//             const loggedUser = await req.session.user.username
 
-            res.render('./users/new', {
-                loggedUser: loggedUser
-            }) 
-        } catch(err) {
-            res.send(err);
-            console.log(err);
-        }
-    } else {
-            res.render('./users/new', {
-                loggedUser: ''
-            })
-        } 
-});
+//             res.render('./users/new', {
+//                 loggedUser: loggedUser
+//             }) 
+//         } catch(err) {
+//             res.send(err);
+//             console.log(err);
+//         }
+//     } else {
+//             res.render('./users/new', {
+//                 loggedUser: ''
+//             })
+//         } 
+// });
 
 // register account route
 router.post('/register', async (req, res) => {
