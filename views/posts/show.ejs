@@ -12,18 +12,13 @@
     <!-- NavBar -->
     <%- include('../partials/navbar.ejs') %>
 
-    <!-- <div><%=post%></div> -->
     <div>
-        <div>--------</div>
-        <!-- <a href="/posts/<%=post._id%>"><div><%=post%></div></a> -->
-        <a href="/posts/<%=post._id%>">
-            <div><%=post.image%></div>
-            <div><%=post.description%></div>
-        </a>
+        <div><img src="<%=post.image%>" alt="Post Image" class="post-img"></div>
+        <div><%=post.description%></div>
+
         <a href="/users/<%=post.user._id%>">
             <div><%=post.user.username%></div>
         </a>
-        <div>--------</div>
     </div>
 
 </body>

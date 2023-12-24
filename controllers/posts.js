@@ -49,19 +49,19 @@ router.get('/index', async (req, res) => {
 // add if logged user = post userID show settings show page 
 router.get('/:id', async (req, res) => {
     try {
-        const loggedUser = await req.session.user.username
+        const loggedUser = await req.session.user
         const foundPost = await Post.findById(req.params.id).populate("user");
         if (loggedUser._id.toString() == foundPost.user._id.toString()) {
             const foundPost = await Post.findById(req.params.id).populate("user");
             res.render('posts/settings', {
                 post: foundPost,
-                loggedUser: loggedUser
+                loggedUser: loggedUser.username
             })
         } else {
             const foundPost = await Post.findById(req.params.id).populate("user");
             res.render('posts/show', {
                 post: foundPost,
-                loggedUser: loggedUser
+                loggedUser: loggedUser.username
             });
         }
     } catch(err) {

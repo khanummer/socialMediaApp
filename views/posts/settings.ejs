@@ -13,16 +13,14 @@
     <%- include('../partials/navbar.ejs') %>
 
 
-    <div>--------</div>
-    <!-- <a href="/posts/<%=post._id%>"><div><%=post%></div></a> -->
-    <a href="/posts/<%=post._id%>">
-        <div><%=post.image%></div>
+    <div>
+        <div><img src="<%=post.image%>" alt="Post Image" class="post-img"></div>
         <div><%=post.description%></div>
-    </a>
-    <a href="/users/<%=post.user._id%>">
-        <div><%=post.user.username%></div>
-    </a>
-    <div>--------</div>
+
+        <a href="/users/<%=post.user._id%>">
+            <div><%=post.user.username%></div>
+        </a>
+    </div>
 
     <div><a href="/posts/<%=post._id%>/edit">Edit Description</a></div>
     <div><a>Delete Post</a></div>

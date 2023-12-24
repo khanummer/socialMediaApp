@@ -19,3 +19,9 @@ a:hover {
 .navbar-item {
     padding: 1rem;
 }
+
+/* posts image */
+.post-img {
+    height: 20rem;
+    width: 20rem;
+}
