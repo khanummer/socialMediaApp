@@ -9,3 +9,13 @@
 a:hover {
     color: white;
 }
+
+/* NavBar */
+.navbar { 
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-item {
+    padding: 1rem;
+}

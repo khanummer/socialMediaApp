@@ -38,12 +38,12 @@ app.use('/posts', postController);
 
 
 // Get Home Page
-app.get('/', async (req, res) => {
+app.get('/home', async (req, res) => {
     if (req.session.logged == true) {
 
         try {
             const loggedUser = await req.session.user.username
-            res.render('index',{
+            res.render('home',{
                 loggedUser: loggedUser
             });
             console.log(req.session);
@@ -53,12 +53,24 @@ app.get('/', async (req, res) => {
             console.log(err);
         }
     } else {
-        res.render('index', {
+        res.render('home', {
             loggedUser: ''
         });
         console.log(req.session);
     }
 });
+
+
+app.get('/', async (req, res) => {
+    if (req.session.logged == true) {
+        const loggedUser = await req.session.user.username
+        res.render('home',{
+            loggedUser: loggedUser
+        });
+    } else {
+        res.render('landing');
+    }
+})
 
 
 
