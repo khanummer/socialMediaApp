@@ -22,16 +22,12 @@ brew services stop mongodb-community@7.0
 
 to do
 
-- landing page with sign in / register. and or different navbar if you are signed in 
-- better navbar
 - user delete route
-- add posts to user profile 
-- single post show route
-- post edit route
 - post delete route
+- styling
+- clean up code
 
 
 bugs 
 - If username is edited to a username that is already taken, app crashes
-- after editing a user, the settings button breaks.
 - edit bio value placeholder is bugged
