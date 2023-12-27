@@ -89,10 +89,11 @@ router.get('/:id/edit', async (req, res) => {
 router.put('/:id/edit', async (req, res) => {
     try {
         const foundUser = await User.findById(req.session.user._id);
+        const foundPost = await Post.findById(req.params.id).populate("user");
         if (foundUser._id.toString() == foundPost.user._id.toString()) {
             const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true});
             updatedPost.save();
-            res.render('posts/:id');
+            res.redirect('/posts/' + foundPost._id);
         } else {
             res.render('error');
         }
