@@ -24,6 +24,7 @@ to do
 
 - user delete route
 - post delete route
+- comments route / functionality
 - styling
 - clean up code
 

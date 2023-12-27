@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const PORT = 3000;
 const userController = require('./controllers/users');
 const postController = require('./controllers/posts')
+const Post = require('./models/posts');
 
 
 // require mongoose database
@@ -39,24 +40,18 @@ app.use('/posts', postController);
 
 // Get Home Page
 app.get('/home', async (req, res) => {
-    if (req.session.logged == true) {
-
-        try {
-            const loggedUser = await req.session.user
-            res.render('home',{
-                loggedUser: loggedUser
-            });
-            console.log(req.session);
-            console.log(req.params)
-        } catch (err) {
-            res.send(err);
-            console.log(err);
-        }
-    } else {
-        res.render('home', {
-            loggedUser: ''
+    try {
+        const loggedUser = await req.session.user;
+        const allPosts = await Post.find({}).populate("user");
+        res.render('home',{
+            loggedUser: loggedUser,
+            posts: allPosts
         });
         console.log(req.session);
+        console.log(req.params)
+    } catch (err) {
+        res.send(err);
+        console.log(err);
     }
 });
 
@@ -64,8 +59,10 @@ app.get('/home', async (req, res) => {
 app.get('/', async (req, res) => {
     if (req.session.logged == true) {
         const loggedUser = await req.session.user
+        const allPosts = await Post.find({}).populate("user");
         res.render('home',{
-            loggedUser: loggedUser
+            loggedUser: loggedUser,
+            posts: allPosts
         });
     } else {
         res.render('landing');

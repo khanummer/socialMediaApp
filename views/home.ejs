@@ -15,8 +15,19 @@
     <%- include('partials/navbar.ejs') %>
 
     <h3>Latest Posts</h3>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti et harum sint? Corporis illo temporibus aspernatur ipsum autem dolor eaque vel ut excepturi. Numquam, in consectetur. Quod modi minima repudiandae.</div>
+
+    <!-- i < 6 or posts.length -->
+    <% for (let i = 0; i < 3; i++) { %>
+        <div>
+            <a href="/posts/<%=posts[i]._id%>"><div><img src="<%=posts[i].image%>" alt="Post Image" class="post-img"></div></a>
+            <div><%=posts[i].description%></div>
     
+            <a href="/users/<%=posts[i].user._id%>">
+                <div><img src="<%=posts[i].user.profilePic%>" class="profile-pic"></div>
+                <div><%=posts[i].user.username%></div>
+            </a>
+        </div>
+    <% } %>    
     <h3>Latest Users</h3>
     <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, veniam temporibus? Veniam minima voluptas impedit facilis eum eos. Maxime quasi quo optio qui error, laudantium aut nesciunt ex ipsam quia.</div>
    
