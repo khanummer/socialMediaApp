@@ -22,7 +22,7 @@ router.post('/new', async (req, res) => {
 
 // get new post route
 router.get('/new', async (req, res) => {
-    const loggedUser = await req.session.user.username
+    const loggedUser = await req.session.user
     const foundUser = await User.findById(req.session.user._id);
     res.render('posts/new', {
         user: foundUser,
@@ -33,7 +33,7 @@ router.get('/new', async (req, res) => {
 // get posts index
 router.get('/index', async (req, res) => {
     try {
-        const loggedUser = await req.session.user.username
+        const loggedUser = await req.session.user
         const allPosts = await Post.find({}).populate("user");
         res.render('posts/index', {
             posts: allPosts,
@@ -55,13 +55,13 @@ router.get('/:id', async (req, res) => {
             const foundPost = await Post.findById(req.params.id).populate("user");
             res.render('posts/settings', {
                 post: foundPost,
-                loggedUser: loggedUser.username
+                loggedUser: loggedUser
             })
         } else {
             const foundPost = await Post.findById(req.params.id).populate("user");
             res.render('posts/show', {
                 post: foundPost,
-                loggedUser: loggedUser.username
+                loggedUser: loggedUser
             });
         }
     } catch(err) {
@@ -73,7 +73,7 @@ router.get('/:id', async (req, res) => {
 // get edit route
 router.get('/:id/edit', async (req, res) => {
     try {
-        const loggedUser = await req.session.user.username
+        const loggedUser = await req.session.user
         const foundPost = await Post.findById(req.params.id).populate("user");
         res.render('posts/edit', {
             post: foundPost,

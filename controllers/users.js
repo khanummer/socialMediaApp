@@ -36,6 +36,7 @@ router.post('/register', async (req, res) => {
     const password = req.body.password;
     const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     const bio = req.body.bio;
+    const profilePic = req.body.profilePic
 
     // entering into the database
     const newUser = {};
@@ -144,7 +145,7 @@ router.get('/index', async (req, res) => {
         try {
             const allUsers = await User.find({})
             const foundUser = await User.findOne({username: req.session.user})
-            const loggedUser = await req.session.user.username
+            const loggedUser = await req.session.user
             res.render('./users/index', {
                 users: allUsers,
                 loggedUser: loggedUser
@@ -168,8 +169,8 @@ router.get('/index', async (req, res) => {
 router.get('/settings', async (req, res) => {
     if (req.session.logged == true) {
         try {
-            const foundUser = await User.findOne({username: req.session.user.username})
-            const loggedUser = await req.session.user.username
+            const foundUser = await User.findOne({username: req.session.user.username}).populate("posts")
+            const loggedUser = await req.session.user
             res.render('./users/settings', {
                 loggedUser: loggedUser,
                 user: foundUser
@@ -180,7 +181,7 @@ router.get('/settings', async (req, res) => {
         }
     } else {
         // const foundUser = await User.findOne({username: req.session.user.username});
-        res.render('index', {
+        res.render('landing', {
             loggedUser: '',
             user: ''
         });
@@ -196,7 +197,7 @@ router.get('/:id', async (req, res) => {
         try {
             // const foundUser = await User.findById(req.params.id)
             const foundUser = await User.findById(req.params.id).populate("posts");
-            const loggedUser = await req.session.user.username;
+            const loggedUser = await req.session.user
             res.render('./users/show', {
                 user: foundUser,
                 loggedUser: loggedUser
@@ -218,7 +219,7 @@ router.get('/:id', async (req, res) => {
 // user edit route
 router.get('/:id/edit', async (req, res) => {
     const foundUser = await User.findById(req.params.id);
-    const loggedUser = await req.session.user.username;
+    const loggedUser = await req.session.user;
     res.render('./users/edit', {
         user: foundUser,
         loggedUser: loggedUser
@@ -233,7 +234,7 @@ router.put('/:id', async (req, res) =>{
         updatedUser.save();
         // if (req.session.logged == true) {
             const foundUser = await User.findById(req.params.id);
-            const loggedUser = await req.session.user.username;
+            const loggedUser = await req.session.user;
             res.render('./users/settings', {
                 user: foundUser,
                 loggedUser: loggedUser

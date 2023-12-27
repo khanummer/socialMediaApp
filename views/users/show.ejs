@@ -12,16 +12,16 @@
     <!-- NavBar -->
     <%- include('../partials/navbar.ejs') %>
 
-    <!-- <div><%=user%></div> -->
+    <img src="<%=user.profilePic%>" class="profile-pic"><div><%=user.username%></div>
     <div><%=user.username%></div>
     <div>Bio</div>
     <div><%=user.bio%></div>
 
-    <% for (let i = 0; i < user.posts.length; i++) { %>
-
-        <div><img src="<%=user.posts[i].image%>" alt="Post Image" class="post-img"></div>
-    
-    <% } %>
+    <div class="container">    
+        <% for (let i = 0; i < user.posts.length; i++) { %>
+            <div><a href="/posts/<%=user.posts[i]._id%>"><img src="<%=user.posts[i].image%>" alt="Post Image" class="post-img"></a></div>
+        <% } %>
+    </div>
     
 </body>
 </html>

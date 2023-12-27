@@ -18,6 +18,7 @@
             <div><%=posts[i].description%></div>
     
             <a href="/users/<%=posts[i].user._id%>">
+                <div><img src="<%=posts[i].user.profilePic%>" class="profile-pic"></div>
                 <div><%=posts[i].user.username%></div>
             </a>
         </div>

@@ -42,7 +42,7 @@ app.get('/home', async (req, res) => {
     if (req.session.logged == true) {
 
         try {
-            const loggedUser = await req.session.user.username
+            const loggedUser = await req.session.user
             res.render('home',{
                 loggedUser: loggedUser
             });
@@ -63,7 +63,7 @@ app.get('/home', async (req, res) => {
 
 app.get('/', async (req, res) => {
     if (req.session.logged == true) {
-        const loggedUser = await req.session.user.username
+        const loggedUser = await req.session.user
         res.render('home',{
             loggedUser: loggedUser
         });

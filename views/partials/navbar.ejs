@@ -3,7 +3,7 @@
     <div class="navbar-item"><a href="/posts/index">Posts</a></div>
     <div class="navbar-item"><a href="/users/index">Users</a></div>
     <div class="navbar-item"><a href="/posts/new">New Post</a></div>
-    <div class="navbar-item"><a href="/users/settings"><%=loggedUser%></a></div>
+    <div class="navbar-item"><a href="/users/settings"><img src="<%=loggedUser.profilePic%>" class="profile-pic"><div><%=loggedUser.username%></div></a></div>
     <div>
         <form action="/users/logout" method="POST">
             <button type="submit">Log Out</button>

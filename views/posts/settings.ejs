@@ -12,18 +12,19 @@
     <!-- NavBar -->
     <%- include('../partials/navbar.ejs') %>
 
+    <div><a href="/posts/<%=post._id%>/edit">Edit Description</a></div>
+    <div><a>Delete Post</a></div>
 
     <div>
         <div><img src="<%=post.image%>" alt="Post Image" class="post-img"></div>
         <div><%=post.description%></div>
 
         <a href="/users/<%=post.user._id%>">
+            <div><img src="<%=post.user.profilePic%>" class="profile-pic"></div>
             <div><%=post.user.username%></div>
         </a>
     </div>
 
-    <div><a href="/posts/<%=post._id%>/edit">Edit Description</a></div>
-    <div><a>Delete Post</a></div>
 
 
 

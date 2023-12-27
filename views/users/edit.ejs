@@ -15,10 +15,15 @@
     <form action="/users/<%=user._id%>?_method=PUT" method="POST">
         <div>Username</div>
         <input type="text" name="username" value="<%=user.username%>"><br>
+        <div>Profile Pic</div>
+        <input type="text" name="profilePic" value="<%=user.profilePic%>"><br>
         <div>Bio</div>
         <textarea name="bio" value="<%=user.bio%>"></textarea><br>
         <button type="submit">Edit Profile</button>
     </form>
+
+    <div>For Profile Pic, upload your own image on --- and copy the image link, or Find an image on google and copy the link.</div>
+
 
 
 

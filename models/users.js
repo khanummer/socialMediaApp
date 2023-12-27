@@ -4,6 +4,7 @@ const userSchema = mongoose.Schema({
     username: {type: String, unique: true},
     password: String,
     bio: String,
+    profilePic: String,
     posts: [ {type: mongoose.Schema.ObjectId, ref:"Post"} ]
 });
 
