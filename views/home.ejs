@@ -17,7 +17,10 @@
     <h3>Latest Posts</h3>
 
     <!-- add at least 6 users and posts on database for this code to work OR change the i < "number" to 0. -->
-    <% for (let i = 0; i < 3; i++) { %>
+    
+    <!-- *Need to Reverse the array* -->
+    
+    <% for (let i = 0; i < 1; i++) { %>
         <div>
             <a href="/posts/<%=posts[i]._id%>"><div><img src="<%=posts[i].image%>" alt="Post Image" class="post-img"></div></a>
             <div><%=posts[i].description%></div>
@@ -30,7 +33,7 @@
     <% } %>    
 
     <h3>Latest Users</h3>
-       <% for (let i = 0; i < 2; i++) { %>
+       <% for (let i = 0; i < 1; i++) { %>
         <div>
             <a href="/users/<%=users[i]._id%>">
                 <div><img src="<%=users[i].profilePic%>" alt="User Profile Pic" class="profile-pic"></div>

@@ -44,7 +44,7 @@ app.get('/home', async (req, res) => {
     try {
         const loggedUser = await req.session.user;
         const allPosts = await Post.find({}).populate("user");
-        const allUsers = await User.find({}).populate("posts")
+        const allUsers = await User.find({});
         res.render('home',{
             loggedUser: loggedUser,
             posts: allPosts,
@@ -63,9 +63,11 @@ app.get('/', async (req, res) => {
     if (req.session.logged == true) {
         const loggedUser = await req.session.user
         const allPosts = await Post.find({}).populate("user");
+        const allUsers = await User.find({});
         res.render('home',{
             loggedUser: loggedUser,
-            posts: allPosts
+            posts: allPosts,
+            users: allUsers
         });
     } else {
         res.render('landing');
