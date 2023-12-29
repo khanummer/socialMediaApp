@@ -7,6 +7,7 @@ const PORT = 3000;
 const userController = require('./controllers/users');
 const postController = require('./controllers/posts')
 const Post = require('./models/posts');
+const User = require('./models/users');
 
 
 // require mongoose database
@@ -43,9 +44,11 @@ app.get('/home', async (req, res) => {
     try {
         const loggedUser = await req.session.user;
         const allPosts = await Post.find({}).populate("user");
+        const allUsers = await User.find({}).populate("posts")
         res.render('home',{
             loggedUser: loggedUser,
-            posts: allPosts
+            posts: allPosts,
+            users: allUsers
         });
         console.log(req.session);
         console.log(req.params)

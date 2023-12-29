@@ -16,7 +16,7 @@
 
     <h3>Latest Posts</h3>
 
-    <!-- i < 6 or posts.length -->
+    <!-- add at least 6 users and posts on database for this code to work OR change the i < "number" to 0. -->
     <% for (let i = 0; i < 3; i++) { %>
         <div>
             <a href="/posts/<%=posts[i]._id%>"><div><img src="<%=posts[i].image%>" alt="Post Image" class="post-img"></div></a>
@@ -28,8 +28,16 @@
             </a>
         </div>
     <% } %>    
+
     <h3>Latest Users</h3>
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, veniam temporibus? Veniam minima voluptas impedit facilis eum eos. Maxime quasi quo optio qui error, laudantium aut nesciunt ex ipsam quia.</div>
-   
+       <% for (let i = 0; i < 2; i++) { %>
+        <div>
+            <a href="/users/<%=users[i]._id%>">
+                <div><img src="<%=users[i].profilePic%>" alt="User Profile Pic" class="profile-pic"></div>
+                <div><%=users[i].username%></div>
+                <div><%=users[i].bio%></div>
+            </a>
+        </div>
+    <% } %>    
 </body>
 </html>
