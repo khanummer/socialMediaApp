@@ -32,3 +32,8 @@ to do
 bugs 
 - If username is edited to a username that is already taken, app crashes
 - edit bio value placeholder is bugged
+
+
+
+*change home code to posts.index and users.index to use the styling*
+*add press start 2p font*

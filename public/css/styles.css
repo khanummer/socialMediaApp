@@ -6,6 +6,10 @@
     
 }
 
+a {
+    text-decoration: none;
+}
+
 a:hover {
     color: white;
 }
@@ -49,7 +53,17 @@ a:hover {
     padding: 2rem;
 }
 
+.users-container {
+    display: inline-grid;
+    grid-template-columns: 150px;
+    grid-template-rows: 150px 150px 150px;
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
+    align-items: center;
+    padding-top: 2rem;
+    padding: 2rem;
 
+}
 
 
 .profile-pic {

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users Index</title>
+    <title>Nothing Social | Users</title>
     <!-- Importing Css -->
     <link rel="stylesheet" type="text/css" href="/../css/styles.css">
 </head>
 <body>
-    <h1>Users Index</h1>
+    <h1>Nothing Social</h1>
     <!-- NavBar -->
     <%- include('../partials/navbar.ejs') %>
 
@@ -16,16 +16,13 @@
 
 
     <% for (let i = 0; i < users.length; i++) { %>
-    <div>
-                <div>--------</div>
+    <div class="users-container">
                 <a href="/users/<%=users[i]._id%>">
-                    <h3>Username</h3> 
                     <img src="<%=users[i].profilePic%>" class="profile-pic">
                     <div><%=users[i].username %></div>
-                    <h3>Bio</h3> 
+                    <h4>Bio</h4> 
                     <div><%=users[i].bio %></div>
                 </a>
-                <div>--------</div>
     </div>
     <% } %>
 

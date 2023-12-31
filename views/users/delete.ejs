@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Account</title>
+    <title>Nothing Social | Delete</title>
     <!-- Importing Css -->
     <link rel="stylesheet" type="text/css" href="/../css/styles.css">
 </head>
 <body>
-    <h1>Are you sure you want to delete your account?</h1>
-    <!-- NavBar -->
+    <h1>Nothing Social</h1>
     <!-- NavBar -->
     <%- include('../partials/navbar.ejs') %>
-
+    
+    <div>Are you sure you want to delete your account?</h1>
     <!-- <form action="/users/<%=user._id%>?_method=DELETE" method="POST"> -->
     <form action="/users/<%=user._id%>/delete?_method=DELETE" method="POST">
         <button type="submit">Yes, delete my account.</button>
